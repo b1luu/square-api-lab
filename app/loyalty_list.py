@@ -15,6 +15,10 @@ def loyalty_accounts_search() -> None:
 
     while True:
         result = client.loyalty.accounts.search(cursor=cursor)
+        if not result.is_success():
+            print("Loyalty accounts search failed.")
+            print(result)
+            break
 
         if result.loyalty_accounts is None:
             print(f"No loyalty accounts returned. Stopping after {count} accounts.")

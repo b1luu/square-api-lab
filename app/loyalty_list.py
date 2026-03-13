@@ -1,3 +1,10 @@
+"""
+loyalty_accounts_search.py
+
+Fetch all loyalty accounts from Square using cursor pagination
+and print the loyalty account ID and associated customer ID.
+"""
+
 from client_creation import client
 
 

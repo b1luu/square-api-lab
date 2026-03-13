@@ -8,7 +8,8 @@ and print the loyalty account ID and associated customer ID.
 from client_creation import client
 
 
-def loyalty_accounts_search():
+def loyalty_accounts_search() -> None:
+    """Print loyalty account IDs and customer IDs."""
     cursor = None
     count = 0
 

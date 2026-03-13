@@ -1,0 +1,4 @@
+python-dotenv==1.1.1
+squareup==43.0.0.20260311
+
+

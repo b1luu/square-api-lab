@@ -21,7 +21,7 @@ def search_loyalty_events() -> list[dict]:
         for event in results.events:
             records.append(
                 {
-                    "id": event.id,
+                    "loyalty_event_id": event.id,
                     "loyalty_account_id": event.loyalty_account_id,
                     "event_type": event.type,
                     "created_at": event.created_at,

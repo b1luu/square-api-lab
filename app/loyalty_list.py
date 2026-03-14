@@ -5,6 +5,8 @@ Fetch all loyalty accounts from Square using cursor pagination
 and print the loyalty account ID and associated customer ID.
 """
 
+import json
+
 from client import client
 
 
@@ -38,7 +40,7 @@ def loyalty_accounts_search() -> list[dict]:
 
             count += 1
 
-            print(f"loyalty_id:{loyalty_id},customer_id:{customer_id}")
+            print(f"loyalty_id: {loyalty_id}, customer_id: {customer_id}")
             print(f"processed {count} accounts")
 
         cursor = result.cursor
@@ -50,4 +52,5 @@ def loyalty_accounts_search() -> list[dict]:
 
 
 if __name__ == "__main__":
-    loyalty_accounts_search()
+    records = loyalty_accounts_search()
+    print(json.dumps(records, indent=2))

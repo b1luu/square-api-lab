@@ -16,9 +16,9 @@ def loyalty_accounts_search() -> list[dict]:
 
     while True:
         result = client.loyalty.accounts.search(cursor=cursor)
-        if not result.is_success():
+        if result.errors:
             print("Loyalty accounts search failed.")
-            print(result)
+            print(result.errors)
             break
 
         if result.loyalty_accounts is None:

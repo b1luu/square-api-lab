@@ -1,5 +1,5 @@
 """
-loyalty_accounts_search.py
+loyalty_list.py
 
 Fetch all loyalty accounts from Square using cursor pagination
 and print the loyalty account ID and associated customer ID.
@@ -23,8 +23,7 @@ def loyalty_accounts_search() -> list[dict]:
             print(result.errors)
             break
 
-        if result.loyalty_accounts is None:
-            print(f"No loyalty accounts returned. Stopping after {count} accounts.")
+        if not result.loyalty_accounts:
             break
 
         for acct in result.loyalty_accounts:

@@ -9,6 +9,7 @@ def create_customer() -> dict | None:
     """Create one sandbox customer and return the created record."""
     try:
         result = client.customers.create(
+            # Square uses this to safely deduplicate retried create requests.
             idempotency_key=str(uuid.uuid4()),
             given_name="Test",
             family_name="LoyaltyCustomer1",
@@ -30,6 +31,7 @@ def create_customer() -> dict | None:
         return None
 
     return result.customer.model_dump()
+
 
 if __name__ == "__main__":
     customer = create_customer()

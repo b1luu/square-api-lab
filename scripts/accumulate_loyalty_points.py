@@ -32,11 +32,17 @@ def accumulate_loyalty_points() -> dict | None:
         print(result.errors)
         return None
 
-    if result.event is None:
-        print("Loyalty points accumulation returned no event.")
-        return None
+    if result.events:
+        return {
+            "events": [event.model_dump() for event in result.events],
+        }
 
-    return result.event.model_dump()
+    if result.event is not None:
+        return result.event.model_dump()
+
+    print("Loyalty points accumulation returned no qualifying loyalty events.")
+    print("This can happen when the purchase does not qualify for points.")
+        return None
 
 
 if __name__ == "__main__":

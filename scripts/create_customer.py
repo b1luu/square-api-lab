@@ -14,7 +14,6 @@ def create_customer() -> dict | None:
             family_name="LoyaltyCustomer1",
             email_address="test.loyalty.customer1@example.com",
             phone_number="+14255550101",
-            note="Sandbox customer created for loyalty and orders testing.",
         )
     except ApiError as error:
         print("Customer creation failed.")

@@ -78,10 +78,23 @@ SQUARE_ACCESS_TOKEN=your_square_sandbox_access_token
 
 ```text
 customer_id
-  -> loyalty_account_id
-  -> loyalty_event_id
-  -> order_id
-  -> payment_id
+J42RRWSJYDP85FKFD046MSRTV4
+    ^
+    |
+loyalty_account_id
+ad026a62-f825-4927-98a1-4e093bc9ea6f
+    |
+    v
+loyalty_event_id
+1c615539-ee49-3d34-8b82-2b5d896392db
+    |
+    v
+order_id
+t4uhAZfm9elAobsgz3aGguFsCPRZY
+    |
+    v
+payment_id
+jHRTyBi8lEMSHsjxZewUjwPiVEFZY
 ```
 
 ## Notes on safety / secrets

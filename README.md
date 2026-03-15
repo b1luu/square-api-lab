@@ -74,10 +74,14 @@ SQUARE_ACCESS_TOKEN=your_square_sandbox_access_token
 .venv/bin/python -m scripts.accumulate_loyalty_points
 ```
 
-## Example relationship
+## Example data flow
 
 ```text
-customer_id -> loyalty_account_id -> loyalty_event_id -> order_id -> payment_id
+customer_id
+  -> loyalty_account_id
+  -> loyalty_event_id
+  -> order_id
+  -> payment_id
 ```
 
 ## Notes on safety / secrets

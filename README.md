@@ -54,9 +54,14 @@ square-oauth-lab/
 │   └── loyalty_list.py
 └── scripts/
     ├── __init__.py
+    ├── accumulate_loyalty_points.py
     ├── create_customer.py
     ├── create_loyalty_account.py
-    └── get_loyalty_program.py
+    ├── create_order.py
+    ├── create_payment.py
+    ├── get_loyalty_program.py
+    ├── list_catalog_items.py
+    └── list_catalog_metadata.py
 ```
 
 File responsibilities:
@@ -65,9 +70,14 @@ File responsibilities:
 - `app/client.py`: creates the Square client
 - `app/loyalty_list.py`: fetches loyalty account data and prints JSON output
 - `app/loyalty_events.py`: fetches loyalty event data and helps inspect raw event payloads
+- `scripts/accumulate_loyalty_points.py`: applies loyalty point accrual to the completed sandbox order
 - `scripts/create_customer.py`: creates a controlled sandbox customer for testing
 - `scripts/get_loyalty_program.py`: retrieves the current seller loyalty program ID
 - `scripts/create_loyalty_account.py`: creates a loyalty account linked to the sandbox test customer
+- `scripts/create_order.py`: creates a catalog-backed sandbox order using real item-library variations and modifiers
+- `scripts/create_payment.py`: creates a sandbox payment tied to the created order
+- `scripts/list_catalog_items.py`: lists sellable catalog items and variation IDs
+- `scripts/list_catalog_metadata.py`: lists catalog categories and modifier lists
 
 ## Requirements
 
@@ -114,9 +124,14 @@ Other useful commands:
 
 ```bash
 .venv/bin/python -m app.loyalty_events
+.venv/bin/python -m scripts.list_catalog_items
+.venv/bin/python -m scripts.list_catalog_metadata
 .venv/bin/python -m scripts.get_loyalty_program
 .venv/bin/python -m scripts.create_customer
 .venv/bin/python -m scripts.create_loyalty_account
+.venv/bin/python -m scripts.create_order
+.venv/bin/python -m scripts.create_payment
+.venv/bin/python -m scripts.accumulate_loyalty_points
 ```
 
 Use case split:
@@ -134,6 +149,39 @@ Example record shape:
   }
 ]
 ```
+
+## Proven Data Model
+
+The current sandbox setup has already proven this end-to-end relationship:
+
+```text
+customer_id
+J42RRWSJYDP85FKFD046MSRTV4
+    ^
+    |
+loyalty_account_id
+ad026a62-f825-4927-98a1-4e093bc9ea6f
+    |
+    v
+loyalty_event_id
+1c615539-ee49-3d34-8b82-2b5d896392db
+    |
+    v
+order_id
+t4uhAZfm9elAobsgz3aGguFsCPRZY
+    |
+    v
+payment_id
+jHRTyBi8lEMSHsjxZewUjwPiVEFZY
+```
+
+Interpretation:
+
+- `customer_id` identifies the Square customer profile
+- `loyalty_account_id` identifies that customer's loyalty membership
+- `loyalty_event_id` identifies the points accrual event
+- `order_id` identifies the catalog-backed purchase that triggered the loyalty event
+- `payment_id` identifies the completed payment for that order
 
 ## Safety Notes
 

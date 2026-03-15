@@ -42,7 +42,7 @@ def accumulate_loyalty_points() -> dict | None:
 
     print("Loyalty points accumulation returned no qualifying loyalty events.")
     print("This can happen when the purchase does not qualify for points.")
-        return None
+    return None
 
 
 if __name__ == "__main__":
